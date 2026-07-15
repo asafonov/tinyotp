@@ -1,10 +1,11 @@
 class QRCodeReaderView {
 
-  constructor() {
+  constructor (callbackFn) {
     this.scannerElement = this.createScannerElement()
     this.stream = null
     this.scanning = false
     this.rafId = null
+    this.callbackFn = callbackFn
     this.scanLoopProxy = this.scanLoop.bind(this)
   }
 
@@ -84,7 +85,7 @@ class QRCodeReaderView {
       if (code) {
         this.stopCamera()
         this.scannerElement.style.display = 'none'
-        alert(JSON.stringify(code))
+        this.callbackFn && this.callbackFn(code)
         return
       }
     }
