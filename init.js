@@ -9,6 +9,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
     alert(`otp ${otp}`)
   }
 
-  qrCodeReader = new QRCodeReaderView(v => alert(JSON.stringify(v.data)))
+  qrCodeReader = new QRCodeReaderView(test)
   qrCodeReader.scan()
 });
