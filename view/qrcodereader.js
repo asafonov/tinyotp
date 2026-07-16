@@ -98,4 +98,11 @@ class QRCodeReaderView {
     this.startCamera()
   }
 
+  destroy() {
+    this.scannerElement = null
+    this.stream = null
+    this.scanning = null
+    this.rafId = null
+    this.callbackFn = null
+  }
 }

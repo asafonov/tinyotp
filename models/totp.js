@@ -2,7 +2,7 @@ class TOTP {
   constructor() {
   }
 
-  parseData (urlString) {
+  parseUrl (urlString) {
     const url = new URL(urlString)
     const pathname = url.pathname.substr(1).split(':')
     return {

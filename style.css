@@ -1,0 +1,38 @@
+@font-face {
+  font-family: mainFont;
+  src: url(Terminus.ttf);
+  font-style: normal;
+}
+
+:root {
+  --background: #000000;
+  --foreground: #00ff00;
+  --mainFontSize: 3vh;
+  --headerFontSize: 6vh;
+  --plusFontSize: 8vh;
+}
+
+html, body {
+  background-color: var(--background);
+  color: var(--foreground);
+  font-size: var(--mainFontSize);
+  font-family: mainFont, sans-serif;
+}
+
+.plus {
+  background-color: var(--foreground);
+  color: var(--background);
+  font-size: var(--plusFontSize);
+  border-radius: 50%;
+  position: absolute;
+  width: var(--plusFontSize);
+  height: var(--plusFontSize);
+  bottom: 1vh;
+  right: 1vh;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.header {
+  font-size: var(--headerFontSize);
+}
