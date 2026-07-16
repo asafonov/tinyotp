@@ -32,7 +32,7 @@ class TOTP {
     const bytes = []
 
     for (let i = 0; i < bits.length; i += 8) {
-      if (i + 8 < bits.length) {
+      if (i + 8 <= bits.length) {
         bytes.push(parseInt(bits.slice(i, i + 8), 2))
       }
     }
@@ -52,7 +52,7 @@ class TOTP {
     const hmacBytes = new Uint8Array(hmacResult)
     const offset = hmacBytes[hmacBytes.length - 1] & 0x0f
     const binaryCode = ((hmacBytes[offset] & 0x7f) << 24) | ((hmacBytes[offset + 1] & 0xff) << 16) | ((hmacBytes[offset + 2] & 0xff) << 8) | (hmacBytes[offset + 3] & 0xff)
-    const otp = binaryCode & Math.pow(10, digits)
+    const otp = binaryCode % Math.pow(10, digits)
     return otp.toString().padStart(digits, '0')
   }
 
