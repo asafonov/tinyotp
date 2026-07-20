@@ -5,6 +5,7 @@ class ListView {
     asafonov.messageBus.subscribe(asafonov.events.LIST_UPDATED, this, 'onListUpdate')
     this.onItemClickProxy = this.onItemClick.bind(this)
     this.onListUpdate()
+    this.qrCodeGenerator = new QRCodeGeneratorView()
   }
 
   async onItemClick (e) {
@@ -12,7 +13,9 @@ class ListView {
     e.stopPropagation()
     const li = e.target
     const item = this.model.item(li.innerHTML)
-    alert(await asafonov.totp.generateTOTP(item.secret))
+    const otp = await asafonov.totp.generateTOTP(item.secret)
+    const url = this.model.itemUrl(li.innerHTML)
+    this.qrCodeGenerator.run(url, otp)
   }
 
   onListUpdate () {
@@ -33,6 +36,8 @@ class ListView {
     this.model.destroy()
     this.model = null
     this.container = null
+    this.qrCodeGenerator.destroy()
+    this.qrCodeGenerator = null
     asafonov.messageBus.unsubscribe(asafonov.events.LIST_UPDATED, this, 'onListUpdate')
   }
 }

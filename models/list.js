@@ -14,6 +14,11 @@ class List {
     return this.list[key]
   }
 
+  itemUrl (key) {
+    const item = this.item(key)
+    return `otpauth://totp/${item.provider}:${item.username}?secret=${item.secret}&issuer=${item.issuer}`
+  } 
+
   onItemAdd (data) {
     this.list[data.provider] = data
     this.save()
