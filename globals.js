@@ -1,6 +1,7 @@
 window.asafonov = {}
 window.asafonov.messageBus = new MessageBus()
 window.asafonov.totp = new TOTP()
+window.asafonov.clipboard = new Clipboard()
 window.asafonov.events = {
   ITEM_ADDED: 'ITEM_ADDED',
   ITEM_DELETED: 'ITEM_DELETED',

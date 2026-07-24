@@ -14,6 +14,7 @@ class ListView {
     const li = e.target
     const item = this.model.item(li.innerHTML)
     const otp = await asafonov.totp.generateTOTP(item.secret)
+    asafonov.clipboard.copy(otp)
     const url = this.model.itemUrl(li.innerHTML)
     this.qrCodeGenerator.run(url, otp)
   }
